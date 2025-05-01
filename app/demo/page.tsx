@@ -29,6 +29,9 @@ import {
   Eye,
   Sparkles,
   Palette,
+  Layout,
+  Image,
+  Search,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -306,7 +309,7 @@ export default function DemoPage() {
   return (
     <div className="min-h-screen bg-zinc-900 text-white flex flex-col">
       {/* Header with back button */}
-      <header className="border-b border-zinc-800 p-4">
+      <header className="border-b border-zinc-800 p-2 sm:p-4">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <button
@@ -320,7 +323,7 @@ export default function DemoPage() {
               className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors ml-2"
             >
               <ArrowLeft size={16} />
-              Back to home
+              <span className="hidden xs:inline">Back to home</span>
             </Link>
           </div>
           <div className="flex items-center gap-2">
@@ -374,7 +377,8 @@ export default function DemoPage() {
                   {/* Sidebar items */}
                   {[
                     { icon: <Folder size={16} />, label: "Projects" },
-                    { icon: <ImageIcon size={16} />, label: "Assets" },
+                    { icon: <Layout size={16} />, label: "Templates" },
+                    { icon: <Image size={16} />, label: "Assets" },
                     { icon: <Users size={16} />, label: "Team" },
                     { icon: <Settings size={16} />, label: "Settings" },
                   ].map((item, index) => (
@@ -395,10 +399,10 @@ export default function DemoPage() {
         {/* Main content area */}
         <div className="flex-1 flex flex-col">
           {/* Toolbar */}
-          <div className="h-12 border-b border-zinc-800 flex items-center px-4">
+          <div className="h-12 border-b border-zinc-800 flex items-center px-2 sm:px-4">
             <div className="flex-1 flex items-center">
-              <div className="relative w-64">
-                <ImageIcon size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-500" />
+              <div className="relative w-full max-w-xs">
+                <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-500" />
                 <input
                   type="text"
                   placeholder="Search projects..."
@@ -409,7 +413,7 @@ export default function DemoPage() {
           </div>
 
           {/* Dashboard content */}
-          <div className="flex-1 p-6 overflow-auto">
+          <div className="flex-1 p-2 sm:p-4 md:p-6 overflow-auto">
             {projectCreated ? (
               <div className="max-w-4xl mx-auto">
                 <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl p-8 border border-zinc-700">
@@ -725,7 +729,7 @@ export default function DemoPage() {
                   </div>
                 </div>
 
-                {/* Two column layout for Moodboard Preview and Engagement Stats */}
+                {/* Two column layout for Moodboard Preview and Quick Actions */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Moodboard Preview */}
                   <Link href="/demo/moodboard" className="block">
@@ -750,7 +754,8 @@ export default function DemoPage() {
                       </div>
                     </div>
                   </Link>
-                  {/* Engagement Stats */}
+
+                  {/* Quick Actions */}
                   <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-700">
                     <div className="flex items-center gap-2 mb-4">
                       <Zap size={18} className="text-amber-400" />
@@ -783,61 +788,62 @@ export default function DemoPage() {
                       </Link>
                     </div>
                   </div>
-                  // Add Active Collaborators section
-                  <div className="mt-6 bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-700">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Users size={18} className="text-blue-400" />
-                      <h3 className="font-semibold">Active Collaborators</h3>
+                </div>
+
+                {/* Active Collaborators section */}
+                <div className="mt-6 bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-700">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Users size={18} className="text-blue-400" />
+                    <h3 className="font-semibold">Active Collaborators</h3>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-purple-500/30 rounded-full flex items-center justify-center">
+                          <span className="text-sm font-medium">M</span>
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium">Marcus Kim</div>
+                          <div className="text-xs text-zinc-400">Producer • Online now</div>
+                        </div>
+                      </div>
+                      <Link href="/demo/chat/marcus">
+                        <Button variant="ghost" size="sm" className="text-xs">
+                          Message
+                        </Button>
+                      </Link>
                     </div>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-purple-500/30 rounded-full flex items-center justify-center">
-                            <span className="text-sm font-medium">M</span>
-                          </div>
-                          <div>
-                            <div className="text-sm font-medium">Marcus Kim</div>
-                            <div className="text-xs text-zinc-400">Producer • Online now</div>
-                          </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-blue-500/30 rounded-full flex items-center justify-center">
+                          <span className="text-sm font-medium">J</span>
                         </div>
-                        <Link href="/demo/chat/marcus">
-                          <Button variant="ghost" size="sm" className="text-xs">
-                            Message
-                          </Button>
-                        </Link>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-blue-500/30 rounded-full flex items-center justify-center">
-                            <span className="text-sm font-medium">J</span>
-                          </div>
-                          <div>
-                            <div className="text-sm font-medium">Jamie Chen</div>
-                            <div className="text-xs text-zinc-400">Visual • Last active 2h ago</div>
-                          </div>
+                        <div>
+                          <div className="text-sm font-medium">Jamie Chen</div>
+                          <div className="text-xs text-zinc-400">Visual • Last active 2h ago</div>
                         </div>
-                        <Link href="/demo/chat/jamie">
-                          <Button variant="ghost" size="sm" className="text-xs">
-                            Message
-                          </Button>
-                        </Link>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-green-500/30 rounded-full flex items-center justify-center">
-                            <span className="text-sm font-medium">T</span>
-                          </div>
-                          <div>
-                            <div className="text-sm font-medium">Taylor West</div>
-                            <div className="text-xs text-zinc-400">Writer • Last active 1d ago</div>
-                          </div>
+                      <Link href="/demo/chat/jamie">
+                        <Button variant="ghost" size="sm" className="text-xs">
+                          Message
+                        </Button>
+                      </Link>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-green-500/30 rounded-full flex items-center justify-center">
+                          <span className="text-sm font-medium">T</span>
                         </div>
-                        <Link href="/demo/chat/taylor">
-                          <Button variant="ghost" size="sm" className="text-xs">
-                            Message
-                          </Button>
-                        </Link>
+                        <div>
+                          <div className="text-sm font-medium">Taylor West</div>
+                          <div className="text-xs text-zinc-400">Writer • Last active 1d ago</div>
+                        </div>
                       </div>
+                      <Link href="/demo/chat/taylor">
+                        <Button variant="ghost" size="sm" className="text-xs">
+                          Message
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -846,995 +852,6 @@ export default function DemoPage() {
           </div>
         </div>
       </div>
-
-      {/* New Project Modal */}
-      <AnimatePresence>
-        {showNewProjectModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-zinc-900 border border-zinc-800 rounded-lg w-full max-w-2xl overflow-hidden"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            >
-              {/* Modal header */}
-              <div className="border-b border-zinc-800 p-4 flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-bold">Create New Project</h3>
-                  <div className="flex items-center mt-1">
-                    <div className="h-1 bg-zinc-700 rounded-full w-48 flex overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300"
-                        style={{ width: `${(currentStep / 4) * 100}%` }}
-                      ></div>
-                    </div>
-                    <span className="text-xs text-zinc-500 ml-2">Step {currentStep} of 4</span>
-                  </div>
-                </div>
-                <button onClick={() => setShowNewProjectModal(false)} className="text-zinc-400 hover:text-white">
-                  <X size={20} />
-                </button>
-              </div>
-
-              {/* Modal content - Step 1: Project Type */}
-              {currentStep === 1 && (
-                <div className="p-6">
-                  <h4 className="text-xl font-bold mb-6 text-center">What are you creating?</h4>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    <div
-                      className={`relative overflow-hidden rounded-xl border ${
-                        projectType === "music" ? "border-blue-500" : "border-zinc-700"
-                      } p-4 cursor-pointer group`}
-                      onClick={() => setProjectType("music")}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 group-hover:opacity-100 opacity-70 transition-opacity"></div>
-                      <div className="relative z-10">
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center mb-3">
-                          <Music size={18} className="text-white" />
-                        </div>
-                        <h5 className="font-bold mb-1">Music Release</h5>
-                        <p className="text-sm text-zinc-400">EP, Album, Single</p>
-                      </div>
-                      {projectType === "music" && (
-                        <div className="absolute top-2 right-2">
-                          <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                            <Check size={12} />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div
-                      className={`relative overflow-hidden rounded-xl border ${
-                        projectType === "visual" ? "border-blue-500" : "border-zinc-700"
-                      } p-4 cursor-pointer group`}
-                      onClick={() => setProjectType("visual")}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-orange-500/10 group-hover:opacity-100 opacity-70 transition-opacity"></div>
-                      <div className="relative z-10">
-                        <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center mb-3">
-                          <Video size={18} className="text-white" />
-                        </div>
-                        <h5 className="font-bold mb-1">Visual Project</h5>
-                        <p className="text-sm text-zinc-400">Video, Promo, Cover Art</p>
-                      </div>
-                      {projectType === "visual" && (
-                        <div className="absolute top-2 right-2">
-                          <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                            <Check size={12} />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div
-                      className={`relative overflow-hidden rounded-xl border ${
-                        projectType === "content" ? "border-blue-500" : "border-zinc-700"
-                      } p-4 cursor-pointer group`}
-                      onClick={() => setProjectType("content")}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-teal-500/10 group-hover:opacity-100 opacity-70 transition-opacity"></div>
-                      <div className="relative z-10">
-                        <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center mb-3">
-                          <Calendar size={18} className="text-white" />
-                        </div>
-                        <h5 className="font-bold mb-1">Content Campaign</h5>
-                        <p className="text-sm text-zinc-400">Social Media, Promo Plan</p>
-                      </div>
-                      {projectType === "content" && (
-                        <div className="absolute top-2 right-2">
-                          <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                            <Check size={12} />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    <div
-                      className={`relative overflow-hidden rounded-xl border ${
-                        projectType === "freeform" ? "border-blue-500" : "border-zinc-700"
-                      } p-4 cursor-pointer group`}
-                      onClick={() => setProjectType("freeform")}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 group-hover:opacity-100 opacity-70 transition-opacity"></div>
-                      <div className="relative z-10">
-                        <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center mb-3">
-                          <Lightbulb size={18} className="text-white" />
-                        </div>
-                        <h5 className="font-bold mb-1">Freeform Idea</h5>
-                        <p className="text-sm text-zinc-400">Just vibes</p>
-                      </div>
-                      {projectType === "freeform" && (
-                        <div className="absolute top-2 right-2">
-                          <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                            <Check size={12} />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="flex justify-between">
-                    <Button
-                      variant="outline"
-                      className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                      onClick={() => setShowNewProjectModal(false)}
-                    >
-                      Cancel
-                    </Button>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                        onClick={handleNextStep}
-                      >
-                        Skip for now
-                      </Button>
-                      <Button
-                        className="bg-white text-zinc-900 hover:bg-zinc-100 flex items-center gap-1"
-                        onClick={handleNextStep}
-                        disabled={!projectType}
-                      >
-                        Next
-                        <ChevronRight size={16} />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Modal content - Step 2: Project Naming */}
-              {currentStep === 2 && (
-                <div className="p-6">
-                  <h4 className="text-xl font-bold mb-6 text-center">Name your project</h4>
-
-                  <div className="space-y-6 mb-8">
-                    <div>
-                      <label className="block text-sm font-medium text-zinc-400 mb-1">Project Title</label>
-                      <input
-                        type="text"
-                        value={projectName}
-                        onChange={(e) => setProjectName(e.target.value)}
-                        placeholder="My New Album"
-                        className="w-full bg-zinc-800 border border-zinc-700 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        autoFocus
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-zinc-400 mb-1">
-                        Subtitle or Internal Tag <span className="text-zinc-500">(optional)</span>
-                      </label>
-                      <input
-                        type="text"
-                        value={projectSubtitle}
-                        onChange={(e) => setProjectSubtitle(e.target.value)}
-                        placeholder="Summer Drop 2025"
-                        className="w-full bg-zinc-800 border border-zinc-700 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-zinc-400 mb-1">Cover Icon or Image</label>
-                      <div className="flex items-center gap-4">
-                        <div
-                          className={`w-16 h-16 bg-gradient-to-br ${projectCoverColor} rounded-lg flex items-center justify-center`}
-                        >
-                          {projectType === "music" && <Music size={24} className="text-white" />}
-                          {projectType === "visual" && <ImageIcon size={24} className="text-white" />}
-                          {projectType === "content" && <Calendar size={24} className="text-white" />}
-                          {projectType === "freeform" && <Lightbulb size={24} className="text-white" />}
-                          {!projectType && <Plus size={24} className="text-white" />}
-                        </div>
-                        <Button
-                          variant="outline"
-                          className="border-zinc-700 text-zinc-400 hover:bg-zinc-800 flex items-center gap-1"
-                        >
-                          <Upload size={14} />
-                          Upload Image
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-between">
-                    <Button
-                      variant="outline"
-                      className="border-zinc-700 text-zinc-400 hover:bg-zinc-800 flex items-center gap-1"
-                      onClick={handlePrevStep}
-                    >
-                      Back
-                    </Button>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                        onClick={handleSaveAsDraft}
-                      >
-                        Save as Draft
-                      </Button>
-                      <Button
-                        className="bg-white text-zinc-900 hover:bg-zinc-100 flex items-center gap-1"
-                        onClick={handleNextStep}
-                        disabled={!projectName.trim()}
-                      >
-                        Next
-                        <ChevronRight size={16} />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Modal content - Step 3: Add Core Elements */}
-              {currentStep === 3 && (
-                <div className="p-6">
-                  <h4 className="text-xl font-bold mb-6 text-center">Add what you're starting with</h4>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                    <div
-                      className={`flex items-center gap-3 p-3 rounded-lg border ${
-                        selectedElements.includes("track") ? "border-blue-500 bg-blue-500/10" : "border-zinc-700"
-                      } cursor-pointer relative`}
-                      onClick={() => toggleElement("track")}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          selectedElements.includes("track") ? "bg-blue-500" : "bg-zinc-700"
-                        }`}
-                      >
-                        <Music size={16} />
-                      </div>
-                      <div>
-                        <h5 className="font-medium">Add a Track</h5>
-                        <p className="text-xs text-zinc-400">Upload audio files</p>
-                      </div>
-
-                      {/* Tooltip */}
-                      {showTooltip === "tracks" && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="absolute -top-12 left-0 right-0 bg-blue-900/90 backdrop-blur-md rounded-lg p-2 text-xs text-blue-100 shadow-lg"
-                        >
-                          Tracks can be uploaded later — don't feel pressured.
-                          <div className="absolute bottom-0 left-4 transform translate-y-1/2 rotate-45 w-2 h-2 bg-blue-900/90"></div>
-                        </motion.div>
-                      )}
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-3 p-3 rounded-lg border ${
-                        selectedElements.includes("artwork") ? "border-blue-500 bg-blue-500/10" : "border-zinc-700"
-                      } cursor-pointer relative`}
-                      onClick={() => toggleElement("artwork")}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          selectedElements.includes("artwork") ? "bg-blue-500" : "bg-zinc-700"
-                        }`}
-                      >
-                        <ImageIcon size={16} />
-                      </div>
-                      <div>
-                        <h5 className="font-medium">Add Cover Art or Moodboard</h5>
-                        <p className="text-xs text-zinc-400">Upload images and references</p>
-                      </div>
-
-                      {/* Tooltip */}
-                      {showTooltip === "moodboard" && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="absolute -top-12 left-0 right-0 bg-blue-900/90 backdrop-blur-md rounded-lg p-2 text-xs text-blue-100 shadow-lg"
-                        >
-                          Use the moodboard to spark visuals or lyrics.
-                          <div className="absolute bottom-0 left-4 transform translate-y-1/2 rotate-45 w-2 h-2 bg-blue-900/90"></div>
-                        </motion.div>
-                      )}
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-3 p-3 rounded-lg border ${
-                        selectedElements.includes("notes") ? "border-blue-500 bg-blue-500/10" : "border-zinc-700"
-                      } cursor-pointer`}
-                      onClick={() => toggleElement("notes")}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          selectedElements.includes("notes") ? "bg-blue-500" : "bg-zinc-700"
-                        }`}
-                      >
-                        <FileText size={16} />
-                      </div>
-                      <div>
-                        <h5 className="font-medium">Add Notes or Lyrics</h5>
-                        <p className="text-xs text-zinc-400">Document your ideas</p>
-                      </div>
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-3 p-3 rounded-lg border ${
-                        selectedElements.includes("visual") ? "border-blue-500 bg-blue-500/10" : "border-zinc-700"
-                      } cursor-pointer`}
-                      onClick={() => toggleElement("visual")}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          selectedElements.includes("visual") ? "bg-blue-500" : "bg-zinc-700"
-                        }`}
-                      >
-                        <Video size={16} />
-                      </div>
-                      <div>
-                        <h5 className="font-medium">Add Visual</h5>
-                        <p className="text-xs text-zinc-400">Video or visualizer</p>
-                      </div>
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-3 p-3 rounded-lg border ${
-                        selectedElements.includes("release") ? "border-blue-500 bg-blue-500/10" : "border-zinc-700"
-                      } cursor-pointer`}
-                      onClick={() => toggleElement("release")}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          selectedElements.includes("release") ? "bg-blue-500" : "bg-zinc-700"
-                        }`}
-                      >
-                        <Calendar size={16} />
-                      </div>
-                      <div>
-                        <h5 className="font-medium">Plan a Release or Post</h5>
-                        <p className="text-xs text-zinc-400">Schedule your content</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-between">
-                    <Button
-                      variant="outline"
-                      className="border-zinc-700 text-zinc-400 hover:bg-zinc-800 flex items-center gap-1"
-                      onClick={handlePrevStep}
-                    >
-                      Back
-                    </Button>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                        onClick={handleSaveAsDraft}
-                      >
-                        Save as Draft
-                      </Button>
-                      <Button
-                        className="bg-white text-zinc-900 hover:bg-zinc-100 flex items-center gap-1"
-                        onClick={handleNextStep}
-                      >
-                        Next
-                        <ChevronRight size={16} />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Modal content - Step 4: Creative Goal */}
-              {currentStep === 4 && (
-                <div className="p-6">
-                  <h4 className="text-xl font-bold mb-2 text-center">Set an intention for this project</h4>
-                  <p className="text-zinc-400 text-center mb-6 text-sm">"Start with a spark."</p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                    <div
-                      className={`flex items-center gap-3 p-3 rounded-lg border ${
-                        creativeGoal === "launch" ? "border-blue-500 bg-blue-500/10" : "border-zinc-700"
-                      } cursor-pointer`}
-                      onClick={() => setCreativeGoal("launch")}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          creativeGoal === "launch" ? "bg-blue-500" : "bg-zinc-700"
-                        }`}
-                      >
-                        <Rocket size={16} />
-                      </div>
-                      <div>
-                        <h5 className="font-medium">Launch a Single</h5>
-                        <p className="text-xs text-zinc-400">Release-ready planning</p>
-                      </div>
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-3 p-3 rounded-lg border ${
-                        creativeGoal === "experiment" ? "border-blue-500 bg-blue-500/10" : "border-zinc-700"
-                      } cursor-pointer`}
-                      onClick={() => setCreativeGoal("experiment")}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          creativeGoal === "experiment" ? "bg-blue-500" : "bg-zinc-700"
-                        }`}
-                      >
-                        <Zap size={16} />
-                      </div>
-                      <div>
-                        <h5 className="font-medium">Experiment Freely</h5>
-                        <p className="text-xs text-zinc-400">No pressure creativity</p>
-                      </div>
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-3 p-3 rounded-lg border ${
-                        creativeGoal === "capture" ? "border-blue-500 bg-blue-500/10" : "border-zinc-700"
-                      } cursor-pointer`}
-                      onClick={() => setCreativeGoal("capture")}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          creativeGoal === "capture" ? "bg-blue-500" : "bg-zinc-700"
-                        }`}
-                      >
-                        <Lightbulb size={16} />
-                      </div>
-                      <div>
-                        <h5 className="font-medium">Capture an Idea</h5>
-                        <p className="text-xs text-zinc-400">Quick concept storage</p>
-                      </div>
-                    </div>
-
-                    <div
-                      className={`flex items-center gap-3 p-3 rounded-lg border ${
-                        creativeGoal === "prep" ? "border-blue-500 bg-blue-500/10" : "border-zinc-700"
-                      } cursor-pointer`}
-                      onClick={() => setCreativeGoal("prep")}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                          creativeGoal === "prep" ? "bg-blue-500" : "bg-zinc-700"
-                        }`}
-                      >
-                        <Target size={16} />
-                      </div>
-                      <div>
-                        <h5 className="font-medium">Prep for a Drop</h5>
-                        <p className="text-xs text-zinc-400">Strategic planning</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-between">
-                    <Button
-                      variant="outline"
-                      className="border-zinc-700 text-zinc-400 hover:bg-zinc-800 flex items-center gap-1"
-                      onClick={handlePrevStep}
-                    >
-                      Back
-                    </Button>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="outline"
-                        className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                        onClick={handleSaveAsDraft}
-                      >
-                        Save as Draft
-                      </Button>
-                      <Button className="bg-white text-zinc-900 hover:bg-zinc-100" onClick={handleCreateProject}>
-                        Create Project
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Saving as draft indicator */}
-      <AnimatePresence>
-        {savingAsDraft && (
-          <motion.div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-zinc-900 border border-zinc-800 rounded-lg p-6 flex flex-col items-center"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-            >
-              <Clock className="w-10 h-10 text-blue-500 mb-4 animate-pulse" />
-              <h3 className="text-lg font-bold mb-1">Saving as Draft</h3>
-              <p className="text-zinc-400 text-sm">Your project will be available in your drafts</p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Collaborator Invitation Modal */}
-      <AnimatePresence>
-        {showCollaboratorModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-zinc-900 border border-zinc-800 rounded-lg w-full max-w-md overflow-hidden"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            >
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Want to bring someone in?</h3>
-                <p className="text-zinc-400 text-sm mb-6">
-                  Collaborate with friends, producers, or visual artists to build together.
-                </p>
-
-                <div className="space-y-4 mb-6">
-                  <div>
-                    <label className="block text-sm font-medium text-zinc-400 mb-1">Email or Muse @handle</label>
-                    <input
-                      type="text"
-                      value={newCollaboratorEmail}
-                      onChange={(e) => setNewCollaboratorEmail(e.target.value)}
-                      placeholder="collaborator@example.com"
-                      className="w-full bg-zinc-800 border border-zinc-700 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-zinc-400 mb-1">Assign a role</label>
-                    <select
-                      value={newCollaboratorRole}
-                      onChange={(e) => setNewCollaboratorRole(e.target.value as CollaboratorRole)}
-                      className="w-full bg-zinc-800 border border-zinc-700 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
-                      <option value="producer">Producer</option>
-                      <option value="visual">Visuals</option>
-                      <option value="engineer">Engineering</option>
-                      <option value="content">Content</option>
-                      <option value="writer">Writer</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-zinc-400 mb-1">Permissions</label>
-                    <div className="flex items-center gap-4">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="permission"
-                          checked={newCollaboratorPermission === "edit"}
-                          onChange={() => setNewCollaboratorPermission("edit")}
-                          className="w-4 h-4 text-blue-500"
-                        />
-                        <div className="flex items-center gap-1">
-                          <Edit size={14} className="text-zinc-400" />
-                          <span className="text-sm">Allow editing</span>
-                        </div>
-                      </label>
-
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="permission"
-                          checked={newCollaboratorPermission === "view"}
-                          onChange={() => setNewCollaboratorPermission("view")}
-                          className="w-4 h-4 text-blue-500"
-                        />
-                        <div className="flex items-center gap-1">
-                          <Eye size={14} className="text-zinc-400" />
-                          <span className="text-sm">View only</span>
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Collaborators list */}
-                {collaborators.length > 0 && (
-                  <div className="mb-6">
-                    <label className="block text-sm font-medium text-zinc-400 mb-2">Added Collaborators</label>
-                    <div className="space-y-2 max-h-32 overflow-y-auto">
-                      {collaborators.map((collab, index) => (
-                        <div key={index} className="flex items-center justify-between bg-zinc-800 rounded-lg p-2">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-zinc-700 rounded-full flex items-center justify-center text-xs">
-                              {collab.email.charAt(0).toUpperCase()}
-                            </div>
-                            <div>
-                              <div className="text-sm">{collab.email}</div>
-                              <div className="flex items-center gap-2">
-                                <span className="text-xs text-zinc-500">{collab.role}</span>
-                                <span className="text-xs text-zinc-500 flex items-center gap-1">
-                                  {collab.permission === "edit" ? <Edit size={10} /> : <Eye size={10} />}
-                                  {collab.permission === "edit" ? "Can edit" : "View only"}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                          <button
-                            onClick={() => removeCollaborator(collab.email)}
-                            className="text-zinc-500 hover:text-zinc-300"
-                          >
-                            <X size={16} />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div className="flex justify-between">
-                  <Button
-                    variant="outline"
-                    className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                    onClick={() => setShowCollaboratorModal(false)}
-                  >
-                    Skip for now
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      addCollaborator()
-                      if (!newCollaboratorEmail) {
-                        setShowCollaboratorModal(false)
-                      }
-                    }}
-                    className="bg-blue-600 hover:bg-blue-500"
-                    disabled={!newCollaboratorEmail}
-                  >
-                    Invite
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Rename Project Modal */}
-      <AnimatePresence>
-        {showRenameModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-zinc-900 border border-zinc-800 rounded-lg w-full max-w-md overflow-hidden"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-            >
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-6">Rename Project</h3>
-
-                <div className="space-y-4 mb-6">
-                  <div>
-                    <label className="block text-sm font-medium text-zinc-400 mb-1">Project Title</label>
-                    <input
-                      type="text"
-                      value={projectName}
-                      onChange={(e) => setProjectName(e.target.value)}
-                      className="w-full bg-zinc-800 border border-zinc-700 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      autoFocus
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-zinc-400 mb-1">
-                      Subtitle or Internal Tag <span className="text-zinc-500">(optional)</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={projectSubtitle}
-                      onChange={(e) => setProjectSubtitle(e.target.value)}
-                      className="w-full bg-zinc-800 border border-zinc-700 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex justify-end gap-2">
-                  <Button
-                    variant="outline"
-                    className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                    onClick={() => setShowRenameModal(false)}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    onClick={() => setShowRenameModal(false)}
-                    className="bg-blue-600 hover:bg-blue-500"
-                    disabled={!projectName.trim()}
-                  >
-                    Save Changes
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Change Cover Art Modal */}
-      <AnimatePresence>
-        {showCoverArtModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-zinc-900 border border-zinc-800 rounded-lg w-full max-w-md overflow-hidden"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-            >
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-6">Change Cover Art</h3>
-
-                <div className="mb-6">
-                  <div className="flex justify-center mb-4">
-                    <div
-                      className={`w-32 h-32 bg-gradient-to-br ${projectCoverColor} rounded-lg flex items-center justify-center`}
-                    >
-                      {projectType === "music" && <Music size={40} className="text-white" />}
-                      {projectType === "visual" && <ImageIcon size={40} className="text-white" />}
-                      {projectType === "content" && <Calendar size={40} className="text-white" />}
-                      {projectType === "freeform" && <Lightbulb size={40} className="text-white" />}
-                    </div>
-                  </div>
-
-                  <div className="flex justify-center">
-                    <Button
-                      variant="outline"
-                      className="border-zinc-700 text-zinc-400 hover:bg-zinc-800 flex items-center gap-1"
-                    >
-                      <Upload size={14} />
-                      Upload Image
-                    </Button>
-                  </div>
-                </div>
-
-                <div className="flex justify-end gap-2">
-                  <Button
-                    variant="outline"
-                    className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                    onClick={() => setShowCoverArtModal(false)}
-                  >
-                    Cancel
-                  </Button>
-                  <Button onClick={() => setShowCoverArtModal(false)} className="bg-blue-600 hover:bg-blue-500">
-                    Save Changes
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Add Notes Modal */}
-      <AnimatePresence>
-        {showAddNotesModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-zinc-900 border border-zinc-800 rounded-lg w-full max-w-md overflow-hidden"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-            >
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-6">Add Notes</h3>
-
-                <div className="mb-6">
-                  <label className="block text-sm font-medium text-zinc-400 mb-1">Project Notes</label>
-                  <textarea
-                    value={projectNotes}
-                    onChange={(e) => setProjectNotes(e.target.value)}
-                    placeholder="Add creative direction, concepts, or reminders..."
-                    className="w-full h-32 bg-zinc-800 border border-zinc-700 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    autoFocus
-                  />
-                </div>
-
-                <div className="flex justify-end gap-2">
-                  <Button
-                    variant="outline"
-                    className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                    onClick={() => setShowAddNotesModal(false)}
-                  >
-                    Cancel
-                  </Button>
-                  <Button onClick={() => setShowAddNotesModal(false)} className="bg-blue-600 hover:bg-blue-500">
-                    Save Notes
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Manage Collaborators Modal */}
-      <AnimatePresence>
-        {showManageCollaboratorsModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-zinc-900 border border-zinc-800 rounded-lg w-full max-w-md overflow-hidden"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-            >
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-6">Manage Collaborators</h3>
-
-                <div className="space-y-4 mb-6">
-                  <div>
-                    <label className="block text-sm font-medium text-zinc-400 mb-1">Email or Muse @handle</label>
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={newCollaboratorEmail}
-                        onChange={(e) => setNewCollaboratorEmail(e.target.value)}
-                        placeholder="collaborator@example.com"
-                        className="flex-1 bg-zinc-800 border border-zinc-700 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      />
-                      <Button
-                        onClick={addCollaborator}
-                        className="bg-blue-600 hover:bg-blue-500"
-                        disabled={!newCollaboratorEmail}
-                      >
-                        Add
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Collaborators list */}
-                  <div>
-                    <label className="block text-sm font-medium text-zinc-400 mb-2">Current Collaborators</label>
-                    {collaborators.length > 0 ? (
-                      <div className="space-y-2 max-h-64 overflow-y-auto">
-                        {collaborators.map((collab, index) => (
-                          <div key={index} className="flex items-center justify-between bg-zinc-800 rounded-lg p-2">
-                            <div className="flex items-center gap-2">
-                              <div className="w-8 h-8 bg-zinc-700 rounded-full flex items-center justify-center text-xs">
-                                {collab.email.charAt(0).toUpperCase()}
-                              </div>
-                              <div>
-                                <div className="text-sm">{collab.email}</div>
-                                <div className="flex items-center gap-2">
-                                  <span className="text-xs text-zinc-500">{collab.role}</span>
-                                  <span className="text-xs text-zinc-500 flex items-center gap-1">
-                                    {collab.permission === "edit" ? <Edit size={10} /> : <Eye size={10} />}
-                                    {collab.permission === "edit" ? "Can edit" : "View only"}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                            <button
-                              onClick={() => removeCollaborator(collab.email)}
-                              className="text-zinc-500 hover:text-zinc-300"
-                            >
-                              <X size={16} />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="bg-zinc-800 rounded-lg p-4 text-center text-zinc-500">
-                        No collaborators added yet
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex justify-end">
-                  <Button
-                    onClick={() => setShowManageCollaboratorsModal(false)}
-                    className="bg-zinc-700 hover:bg-zinc-600"
-                  >
-                    Done
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Leave Project Modal */}
-      <AnimatePresence>
-        {showLeaveProjectModal && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-zinc-900 border border-zinc-800 rounded-lg w-full max-w-md overflow-hidden"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-            >
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Leave Project</h3>
-                <p className="text-zinc-400 mb-6">
-                  Are you sure you want to leave this project? You will lose access to all project content and
-                  collaborations.
-                </p>
-
-                <div className="flex justify-end gap-2">
-                  <Button
-                    variant="outline"
-                    className="border-zinc-700 text-zinc-400 hover:bg-zinc-800"
-                    onClick={() => setShowLeaveProjectModal(false)}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setShowLeaveProjectModal(false)
-                      setProjectCreated(false)
-                    }}
-                    className="bg-red-600 hover:bg-red-500"
-                  >
-                    Leave Project
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }

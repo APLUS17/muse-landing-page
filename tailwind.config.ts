@@ -11,10 +11,22 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1.5rem",
+        lg: "2rem",
+      },
       screens: {
         "2xl": "1400px",
       },
+    },
+    screens: {
+      'xs': '320px',    // iPhone SE
+      'sm': '375px',    // iPhone 12/13 mini
+      'md': '390px',    // iPhone 12/13/14
+      'lg': '430px',    // iPhone 14 Pro Max
+      'xl': '768px',    // iPad
+      '2xl': '1024px',  // Desktop
     },
     extend: {
       colors: {
