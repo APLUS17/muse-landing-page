@@ -9,7 +9,7 @@ const navItems = [
   { name: 'Templates', icon: '📑', path: '/templates' },
   { name: 'Projects', icon: '📁', path: '/projects' },
   { name: 'Plan', icon: '📅', path: '/plan' },
-  { name: 'Bio Sites', icon: '🌐', path: '/bio' },
+  { name: 'Moodboard', icon: '🎭', path: '/moodboard' },
 ];
 
 const BottomNavBar = () => {

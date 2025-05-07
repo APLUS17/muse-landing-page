@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  width: '475px',
-  height: '769px',
+  width: 475,
+  height: 769,
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,

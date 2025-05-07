@@ -1,10 +1,10 @@
 import React from 'react';
-import TopBar from '../components/TopBar';
-import ActionButtons from '../components/ActionButtons';
-import FanScroll from '../components/FanScroll';
-import ToolsGrid from '../components/ToolsGrid';
-import BottomNavBar from '../components/BottomNavBar';
-import RecentProjects from '../components/RecentProjects';
+import TopBar from '@/components/TopBar';
+import ActionButtons from '@/components/ActionButtons';
+import FanScroll from '@/components/FanScroll';
+import ToolsGrid from '@/components/ToolsGrid';
+import BottomNavBar from '@/components/BottomNavBar';
+import RecentProjects from '@/components/RecentProjects';
 
 const templates = [
   {
