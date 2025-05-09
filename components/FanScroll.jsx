@@ -1,134 +1,134 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
+import { motion, useMotionValue, useTransform, useAnimation } from "framer-motion";
 
-const baseCards = [
+const templates = [
   {
-    id: '1',
-    title: 'Endless Sunshine',
-    description: 'Reels Covers',
-    imageUrl: 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1000',
+    id: 1,
+    title: 'PLUS ULTRA EP',
+    subtitle: 'Single Cover + IG Snippet Templates',
+    imageUrl: 'https://images.unsplash.com/photo-1633437141429-8f07aa9b0a48?auto=format&fit=crop&w=800&q=80'
   },
   {
-    id: '2',
-    title: 'Summer Vibes',
-    description: 'Reels Covers',
-    imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000',
+    id: 2,
+    title: 'SUMMER TAPE 2024',
+    subtitle: 'Project Moodboard + Tracklist Design',
+    imageUrl: 'https://images.unsplash.com/photo-1607082348811-31ec3cf26849?auto=format&fit=crop&w=800&q=80'
   },
   {
-    id: '3',
-    title: 'Ocean Dreams',
-    description: 'Reels Covers',
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000',
+    id: 3,
+    title: 'VISUAL LOOPS',
+    subtitle: 'Content Calendar + Video Templates',
+    imageUrl: 'https://images.unsplash.com/photo-1627919801119-f3f503f82670?auto=format&fit=crop&w=800&q=80'
   },
   {
-    id: '4',
-    title: 'Mountain Escape',
-    description: 'Reels Covers',
-    imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000',
+    id: 4,
+    title: 'REELS STARTER KIT',
+    subtitle: 'Drag and Drop Feed Previews',
+    imageUrl: 'https://images.unsplash.com/photo-1607082350094-c27f273ec4b4?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 5,
+    title: 'STORYTELLING PACK',
+    subtitle: 'Promo Assets for Rollouts',
+    imageUrl: 'https://images.unsplash.com/photo-1610271213263-38753f2c3046?auto=format&fit=crop&w=800&q=80'
   }
 ];
 
-const FanScroll = () => {
-  const cards = [...baseCards, ...baseCards, ...baseCards];
-  const [activeIndex, setActiveIndex] = useState(baseCards.length);
-  const scrollRef = useRef(null);
+export default function FanScroll() {
+  const [hasMounted, setHasMounted] = useState(false);
+  const [cards, setCards] = useState(templates);
 
   useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    container.scrollLeft = (baseCards.length * 220); // Adjusted for new card spacing
-
-    const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const itemWidth = 220; // Adjusted card width including spacing
-      const index = Math.round(scrollLeft / itemWidth);
-      
-      if (scrollLeft < itemWidth * baseCards.length) {
-        container.style.scrollBehavior = 'auto';
-        container.scrollLeft = scrollLeft + (baseCards.length * itemWidth);
-        container.style.scrollBehavior = 'smooth';
-      } else if (scrollLeft > itemWidth * baseCards.length * 2) {
-        container.style.scrollBehavior = 'auto';
-        container.scrollLeft = scrollLeft - (baseCards.length * itemWidth);
-        container.style.scrollBehavior = 'smooth';
-      }
-
-      setActiveIndex(index);
-    };
-
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
+    setHasMounted(true);
   }, []);
 
-  return (
-    <div 
-      ref={scrollRef}
-      className="w-full overflow-x-scroll hide-scrollbar px-4"
-      style={{
-        scrollSnapType: 'x mandatory',
-        WebkitOverflowScrolling: 'touch',
-        scrollBehavior: 'smooth',
-        perspective: '1500px',
-        msOverflowStyle: 'none',
-        scrollbarWidth: 'none',
-      }}
-    >
-      <div 
-        className="flex items-center py-4"
-        style={{
-          transformStyle: 'preserve-3d',
-          width: `${cards.length * 220}px`, // Adjusted for new card spacing
-          paddingLeft: 'calc(50% - 110px)', // Center the active card
-          paddingRight: 'calc(50% - 110px)',
-        }}
-      >
-        {cards.map((card, idx) => {
-          const offset = idx - activeIndex;
-          const scale = Math.abs(offset) > 0 ? 0.85 : 1;
-          const rotateY = offset * -15; // Increased rotation angle
-          const translateZ = Math.abs(offset) > 0 ? -100 : 0; // Increased depth
-          const translateX = offset * 20; // Reduced X translation to keep cards closer
-          const opacity = Math.abs(offset) > 2 ? 0 : 1;
+  const visibleCards = [
+    cards[cards.length - 1],
+    cards[0],
+    cards[1]
+  ];
 
-          return (
-            <div
-              key={`${card.id}-${idx}`}
-              className="flex-none w-[200px] h-[320px] mx-[10px] rounded-2xl overflow-hidden relative"
-              style={{
-                scrollSnapAlign: 'center',
-                transform: `
-                  translateX(${translateX}px)
-                  scale(${scale})
-                  rotateY(${rotateY}deg)
-                  translateZ(${translateZ}px)
-                `,
-                opacity,
-                transition: 'all 0.3s ease-out',
-                transformOrigin: 'center center',
-                zIndex: 100 - Math.abs(offset),
-              }}
-            >
-              <img
-                src={card.imageUrl}
-                alt={card.title}
-                className="w-full h-full object-cover"
-                draggable={false}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-0 w-full flex flex-col items-center px-4">
-                <h3 className="text-lg font-bold text-center text-white drop-shadow-md mb-2 truncate w-full" style={{fontFamily: 'serif'}}>{card.title}</h3>
-                <button className="bg-black/60 text-white text-xs font-medium rounded-full px-4 py-2 mb-1 shadow border border-white/10">
-                  {card.description}
-                </button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+  if (!hasMounted) return null;
+
+  return (
+    <div className="grid h-[500px] w-full place-items-center bg-black">
+      {visibleCards.map((card, index) => (
+        <Card
+          key={card.id}
+          {...card}
+          index={index}
+          isFront={index === 2}
+          cards={cards}
+          setCards={setCards}
+        />
+      ))}
     </div>
   );
-};
+}
 
-export default FanScroll; 
+function Card({ id, title, subtitle, imageUrl, isFront, index, cards, setCards }) {
+  const x = useMotionValue(0);
+  const controls = useAnimation();
+  const rotateRaw = useTransform(x, [-150, 150], [-18, 18]);
+
+  const rotate = useTransform(rotateRaw, (latest) => {
+    const offset = isFront ? 0 : id % 2 ? 6 : -6;
+    return `${latest + offset}deg`;
+  });
+
+  const handleClick = async () => {
+    if (!isFront) return;
+    const direction = Math.random() > 0.5 ? 1 : -1;
+    await controls.start({
+      x: 40 * direction,
+      y: 20,
+      rotate: `${6 * direction}deg`,
+      scale: 0.94,
+      opacity: 1,
+      transition: { duration: 0.4 }
+    });
+    setCards((prev) => {
+      const rotated = [...prev];
+      const card = rotated.pop();
+      rotated.unshift(card);
+      return rotated;
+    });
+  };
+
+  return (
+    <motion.div
+      className="h-96 w-72 origin-bottom rounded-2xl bg-white border border-zinc-100 shadow-xl p-4 text-gray-800 grid grid-rows-[auto_1fr_auto] hover:shadow-2xl transition-shadow backdrop-blur-sm"
+      style={{
+        gridRow: 1,
+        gridColumn: 1,
+        x,
+        rotate,
+        zIndex: index,
+        scale: isFront ? 1 : 0.96 - index * 0.01,
+        y: isFront ? 0 : -index * 6,
+        boxShadow: isFront
+          ? "0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5)"
+          : undefined
+      }}
+      animate={controls}
+      whileTap={{ scale: 0.97 }}
+      onClick={handleClick}
+    >
+      <div className="text-[11px] text-gray-500 mb-1 tracking-wider uppercase">MUSE PROJECT</div>
+      <div className="text-xl font-semibold mb-1 truncate text-zinc-900">{title}</div>
+      <div className="relative my-2 rounded-md overflow-hidden shadow-sm">
+        <img
+          src={imageUrl}
+          alt={title}
+          className="w-full h-40 object-cover rounded-lg transition-transform duration-300 ease-in-out group-hover:scale-105"
+        />
+      </div>
+      <div className="text-xs text-gray-600 leading-snug mb-2">{subtitle}</div>
+      <button className="bg-black text-white w-full py-2 rounded-full text-sm font-medium mt-auto hover:bg-zinc-800 transition-colors">
+        Open Project
+      </button>
+    </motion.div>
+  );
+} 
