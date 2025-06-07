@@ -1,21 +1,13 @@
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import AppLayout from '@/components/AppLayout';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Unfold Studio",
-  description: "Create beautiful stories",
-};
-
-export const viewport: Viewport = {
-  width: 475,
-  height: 769,
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  viewportFit: 'cover',
+  title: 'Muse - Your Creative Inspiration',
+  description: 'Discover and collect creative inspiration',
 };
 
 export default function RootLayout({
@@ -24,11 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
-      <body className="overflow-x-hidden bg-black">
-        <div className="w-[475px] h-[769px] mx-auto overflow-y-auto overflow-x-hidden relative">
+    <html lang="en" className="dark">
+      <body className={`${inter.className} bg-black text-white min-h-screen`}>
+        <AppLayout>
           {children}
-        </div>
+        </AppLayout>
       </body>
     </html>
   );

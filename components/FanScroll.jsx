@@ -6,25 +6,25 @@ import { motion, useMotionValue, useTransform, useAnimation } from "framer-motio
 const templates = [
   {
     id: 1,
-    title: 'PLUS ULTRA EP',
+    title: 'Project Kit',
     subtitle: 'Single Cover + IG Snippet Templates',
     imageUrl: 'https://images.unsplash.com/photo-1633437141429-8f07aa9b0a48?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: 2,
-    title: 'SUMMER TAPE 2024',
+    title: 'Moodboard Kit',
     subtitle: 'Project Moodboard + Tracklist Design',
     imageUrl: 'https://images.unsplash.com/photo-1607082348811-31ec3cf26849?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: 3,
-    title: 'VISUAL LOOPS',
+    title: 'Planning Kit',
     subtitle: 'Content Calendar + Video Templates',
     imageUrl: 'https://images.unsplash.com/photo-1627919801119-f3f503f82670?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: 4,
-    title: 'REELS STARTER KIT',
+    title: 'Release Kit',
     subtitle: 'Drag and Drop Feed Previews',
     imageUrl: 'https://images.unsplash.com/photo-1607082350094-c27f273ec4b4?auto=format&fit=crop&w=800&q=80'
   },

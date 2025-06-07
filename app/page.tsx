@@ -1,10 +1,16 @@
+'use client';
 import React from 'react';
-import TopBar from '@/components/TopBar';
-import ActionButtons from '@/components/ActionButtons';
-import FanScroll from '@/components/FanScroll';
-import ToolsGrid from '@/components/ToolsGrid';
-import BottomNavBar from '@/components/BottomNavBar';
-import RecentProjects from '@/components/RecentProjects';
+import TopBar from './components/TopBar';
+import ActionButtons from './components/ActionButtons';
+import CardClusterStack from './components/CardClusterStack';
+import ToolsGrid from './components/ToolsGrid';
+import BottomNavBar from './components/BottomNavBar';
+import RecentProjects from './components/RecentProjects';
+import SearchBar from './components/SearchBar';
+import LearningCenter from './components/LearningCenter';
+import CollaborationHub from './components/CollaborationHub';
+import AssetLibrary from './components/AssetLibrary';
+import ThemeToggle from './components/ThemeToggle';
 
 const templates = [
   {
@@ -36,21 +42,54 @@ const templates = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-black overflow-x-hidden">
-      <TopBar />
-      <ActionButtons />
-      
-      {/* Main Content - Scrollable Area */}
-      <div className="mt-4 pb-24 overflow-x-hidden">
-        <FanScroll />
-        <div className="mt-8">
-          <ToolsGrid />
+      <div className="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-sm">
+        <TopBar />
+        <div className="px-4 py-2">
+          <SearchBar />
         </div>
-        <div className="mt-8">
-          <RecentProjects />
-        </div>
+        <ActionButtons />
       </div>
       
-      <BottomNavBar />
+      {/* Main Content - Scrollable Area */}
+      <div className="mt-32 pb-24 px-4">
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">Featured Templates</h2>
+          <CardClusterStack />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">Creative Tools</h2>
+          <ToolsGrid />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">Recent Projects</h2>
+          <RecentProjects />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">Learning Center</h2>
+          <LearningCenter />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">Collaboration Hub</h2>
+          <CollaborationHub />
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6">Asset Library</h2>
+          <AssetLibrary />
+        </section>
+      </div>
+      
+      <div className="fixed bottom-0 w-full bg-black/95 backdrop-blur-sm">
+        <BottomNavBar />
+      </div>
+
+      <div className="fixed top-4 right-4">
+        <ThemeToggle />
+      </div>
     </main>
   );
 }
