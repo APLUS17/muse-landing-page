@@ -7,9 +7,6 @@ import ToolsGrid from './components/ToolsGrid';
 import BottomNavBar from './components/BottomNavBar';
 import RecentProjects from './components/RecentProjects';
 import SearchBar from './components/SearchBar';
-import LearningCenter from './components/LearningCenter';
-import CollaborationHub from './components/CollaborationHub';
-import AssetLibrary from './components/AssetLibrary';
 import ThemeToggle from './components/ThemeToggle';
 
 const templates = [
@@ -65,21 +62,6 @@ export default function Home() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-white mb-6">Recent Projects</h2>
           <RecentProjects />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Learning Center</h2>
-          <LearningCenter />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Collaboration Hub</h2>
-          <CollaborationHub />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Asset Library</h2>
-          <AssetLibrary />
         </section>
       </div>
       

@@ -56,20 +56,6 @@ const tools = [
         </div>
       </div>
     )
-  },
-  {
-    id: 4,
-    name: 'Team',
-    description: 'Manage your collaborators',
-    iconUrl: '/icons/plan.svg',
-    bgGradient: 'from-blue-500 to-indigo-600',
-    pattern: (
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-4 left-4 w-12 h-12 rounded-full border-2 border-white/20"></div>
-        <div className="absolute top-8 left-12 w-8 h-8 rounded-full border-2 border-white/20"></div>
-        <div className="absolute bottom-8 right-8 w-16 h-16 rounded-full border-2 border-white/20"></div>
-      </div>
-    )
   }
 ];
 
