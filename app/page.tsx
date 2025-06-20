@@ -44,49 +44,17 @@ export default function Home() {
     <main className="min-h-screen bg-black overflow-x-hidden">
       <div className="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-sm">
         <TopBar />
-        <div className="px-4 py-2">
-          <SearchBar />
-        </div>
-        <ActionButtons />
       </div>
-      
       {/* Main Content - Scrollable Area */}
-      <div className="mt-32 pb-24 px-4">
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Featured Templates</h2>
+      <div className="mt-28 pb-24 px-4">
+        <section className="mb-8">
           <CardClusterStack />
         </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Creative Tools</h2>
-          <ToolsGrid />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Recent Projects</h2>
-          <RecentProjects />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Learning Center</h2>
-          <LearningCenter />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Collaboration Hub</h2>
-          <CollaborationHub />
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Asset Library</h2>
-          <AssetLibrary />
-        </section>
+        {/* You can add more sections here as needed, e.g., For You, Trending, etc. */}
       </div>
-      
       <div className="fixed bottom-0 w-full bg-black/95 backdrop-blur-sm">
         <BottomNavBar />
       </div>
-
       <div className="fixed top-4 right-4">
         <ThemeToggle />
       </div>
