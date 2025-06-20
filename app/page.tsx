@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import TopBar from './components/TopBar';
-import ActionButtons from './components/ActionButtons';
 import CardClusterStack from './components/CardClusterStack';
 import ToolsGrid from './components/ToolsGrid';
 import BottomNavBar from './components/BottomNavBar';
@@ -44,13 +43,11 @@ export default function Home() {
         <div className="px-4 py-2">
           <SearchBar />
         </div>
-        <ActionButtons />
       </div>
       
       {/* Main Content - Scrollable Area */}
       <div className="mt-32 pb-24 px-4">
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Featured Templates</h2>
           <CardClusterStack />
         </section>
 
