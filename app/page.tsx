@@ -44,7 +44,6 @@ export default function Home() {
           <SearchBar />
         </div>
       </div>
-      
       {/* Main Content - Scrollable Area */}
       <div className="mt-32 pb-24 px-4">
         <section className="mb-12">
@@ -61,11 +60,9 @@ export default function Home() {
           <RecentProjects />
         </section>
       </div>
-      
       <div className="fixed bottom-0 w-full bg-black/95 backdrop-blur-sm">
         <BottomNavBar />
       </div>
-
       <div className="fixed top-4 right-4">
         <ThemeToggle />
       </div>
